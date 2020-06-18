@@ -2,49 +2,47 @@
 
 ## Expat Journal API Guide
 
-## Authentication Routes
+### Authentication Routes
 
-### User Registration
+#### User Registration
 
-#### POST /auth/register
+##### POST /auth/register
 
+<br/>
 
-|--------|--------------------|
 | Method |      Endpoint      |
 |--------|--------------------|
 |  POST  |   /auth/register   |
-|--------|--------------------|
 
-Input:
-email: "generic@mail.com", (string required, unique)
-username: "gandalf", (string required, unique)
+Input:\
+email: "generic@mail.com", (string required, unique)\
+username: "gandalf", (string required, unique)\
 password: "password1", (string required)
 
-Output:
-ID: 1, (id assigned automatically)
-email: "generic@mail.com",
-username: "gandalf",
+Output:\
+ID: 1, (id assigned automatically)\
+email: "generic@mail.com",\
+username: "gandalf",\
 password: "hashed password"
 
+<br/>
 
 ### User Login
 
 #### POST /auth/login
 
 
-|--------|--------------------|
 | Method |      Endpoint      |
 |--------|--------------------|
 |  POST  |    /auth/login     |
-|--------|--------------------|
 
 
-Input: 
-username: "gandalf", (string required, unique)
-password: "password1", (string required)
+Input:\
+username: "gandalf", (string required, unique)\
+password: "password1", (string required)\
 
-Output:
-ID: "id assigned to user",
-username: "username of user",
-token: JSON webtoken returned,
+Output:\
+ID: "id assigned to user",\
+username: "username of user",\
+token: JSON webtoken returned,\
 message: "Welcome, user!"
