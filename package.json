@@ -4,9 +4,9 @@
   "description": "travel journal site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "server": "nodemon index.js"
+    "test": "jest --watch",
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": "https://github.com/Build-Week-Expat-Journal-1/BackEnd.git",
   "author": "Josh Gray and Dan Hermansen",

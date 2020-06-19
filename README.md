@@ -15,13 +15,13 @@
 |  POST  |   /auth/register   |
 
 Input:\
-email: "generic@mail.com", (string required, unique)\
+email: "`generic@mail.com`", (string required, unique)\
 username: "gandalf", (string required, unique)\
 password: "password1", (string required)
 
 Output:\
 ID: 1, (id assigned automatically)\
-email: "generic@mail.com",\
+email: "`generic@mail.com`",\
 username: "gandalf",\
 password: "hashed password"
 

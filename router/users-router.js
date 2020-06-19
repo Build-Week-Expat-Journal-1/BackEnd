@@ -1,13 +1,24 @@
-const router = require("express").Router();
+const express = require('express')
+const router = express.Router();
 
-const Users = require("./users-model.js");
+const Users = require('./users-model.js')
 
-router.get("/", (req, res) => {
-  Users.findUsers()
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((err) => res.send(err));
-});
+const restricted = require("../auth/restricted-middleware.js");
+
+router.get('/', restricted, async (req, res) => {  
+    try {
+        const found = await Users.findUsers()
+        if (found) {
+            res.status(200).json(found)
+        } else {
+            res.status(401).json('No users found in the database')
+        }
+    }
+    catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+
 
 module.exports = router;
