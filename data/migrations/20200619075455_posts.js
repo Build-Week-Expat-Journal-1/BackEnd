@@ -3,14 +3,20 @@ const moment = require("moment");
 exports.up = async function (knex) {
   await knex.schema.createTable("posts", (tbl) => {
     tbl.increments("id").notNullable();
-    tbl.string("topic").notNullable();
-    tbl.text("description").notNullable();
+    tbl.string("category").notNullable();
+    tbl.text("story").notNullable();
     tbl
       .string("posted_date")
       .defaultTo(moment().format("YYYY-MM-DD HH:mm:ss"))
       .notNullable()
       .unique();
-    tbl.integer("reported_by").notNullable().references("id").inTable("users");
+    tbl
+      .integer("user_id")
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
     tbl.string("photo").notNullable();
   });
 };
