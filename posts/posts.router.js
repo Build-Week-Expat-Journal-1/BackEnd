@@ -44,8 +44,7 @@ router.post("/", (req, res) => {
         res.status(201);
       })
       .catch((error) => {
-        res.render(error);
-        res.render.status(500).json({
+        res.status(500).json({
           error: "There was an error while saving the post to the database",
         });
       });
