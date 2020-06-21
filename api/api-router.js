@@ -6,8 +6,8 @@ const postsRouter = require("../posts/posts.router");
 
 const restricted = require("../auth/restricted-middleware.js");
 
-router.use("/auth", restricted, authRouter);
-router.use("/users", usersRouter);
+router.use("/auth", authRouter);
+router.use("/users", restricted, usersRouter);
 router.use("/posts", restricted, postsRouter);
 
 router.get("/", (req, res) => {
