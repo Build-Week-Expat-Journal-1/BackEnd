@@ -55,7 +55,10 @@ router.post("/", (req, res) => {
 router.delete("/:id", (req, res) => {
   db.deletePost(req.params.id)
     .then((removed) => {
-      res.status(200).json(removed);
+      res.status(200).json({
+        message: `Post id: ${req.params.id} has been removed`,
+        removed,
+      });
     })
     .catch((error) => {
       res.status(500).json({ error: "Failed to delete post" });
@@ -68,7 +71,9 @@ router.put("/:id", (req, res) => {
 
   db.updatePost(req.params.id, newContent)
     .then((edit) => {
-      res.status(200).json(edit);
+      res.status(200).json({
+        message: `Edits successful! category:'${category}' story:'${story}' `,
+      });
     })
     .catch((error) => {
       res.status(500).json({ message: "Failed to update post" });
