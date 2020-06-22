@@ -2,8 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
-const Users = require("../router/users-model");
+const Users = require("../users/users-model");
 
 router.post("/register", async (req, res) => {
   let user = req.body;
@@ -12,34 +11,30 @@ router.post("/register", async (req, res) => {
   user.password = hash;
 
   try {
-    const newUser = await Users.add(user)
+    const newUser = await Users.add(user);
     if (newUser) {
-        res.status(201).json('New User added')
-
+      res.status(201).json("New User added");
     } else {
-        res.status(404).json('Unable to add new User')
+      res.status(404).json("Unable to add new User");
     }
+  } catch {
+    res.status(500).json("Error with Database");
   }
-  catch{
-    res.status(500).json('Error with Database')
-  }
-})
+});
 
 router.post("/login", async (req, res) => {
   let { username, password } = req.body;
 
   try {
-    const user = await Users.findBy({ username }).first()
+    const user = await Users.findBy({ username }).first();
     if (user && bcrypt.compareSync(password, user.password)) {
-       
-        const token = signToken(user)
-        res.status(200).json({ message: `Welcome, ${user.username}!`, token })
+      const token = signToken(user);
+      res.status(200).json({ message: `Welcome, ${user.username}!`, token });
     } else {
-        res.status(401).json({ message: 'Invalid Credentials' })
+      res.status(401).json({ message: "Invalid Credentials" });
     }
-  }
-  catch (error) {
-    res.status(500).json(error)
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 

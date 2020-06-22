@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-  try{
+  try {
     if (authorization) {
       const jwtSecret = process.env.JWT_SECRET || "There is a secret";
       jwt.verify(authorization, jwtSecret, (err, decodedToken) => {
@@ -15,10 +15,9 @@ module.exports = (req, res, next) => {
         }
       });
     } else {
-      res.json({ message: "Invalid authorization" })
+      res.json({ message: "Invalid authorization" });
     }
-  }
-  catch {
+  } catch {
     res.status(400).json({ message: "Login and try again" });
   }
 };
