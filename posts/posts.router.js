@@ -30,25 +30,18 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { category, story } = req.body;
-  const newPost = { category, story };
+  const newPost = req.body;
 
-  if (!category || !story) {
-    res.status(400).json({
-      errorMessage: "Please provide contents for the post.",
-    });
-  } else {
-    db.insert(newPost)
-      .then((addedPost) => {
-        res.json(addedPost);
-        res.status(201);
-      })
-      .catch((error) => {
-        res.status(500).json({
-          error: "There was an error while saving the post to the database",
-        });
+  db.insert(newPost)
+    .then((addedPost) => {
+      res.json(addedPost);
+      res.status(201);
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: "There was an error while saving the post to the database",
       });
-  }
+    });
 });
 
 router.delete("/:id", (req, res) => {
