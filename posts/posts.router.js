@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("./posts.model");
+const { contentSecurityPolicy } = require("helmet");
 const router = express.Router();
 router.use(express.json());
 
@@ -30,24 +31,34 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const newPost = req.body;
-
-  db.insert(newPost)
-    .then((addedPost) => {
-      res.json(addedPost);
-      res.status(201);
-    })
-    .catch((error) => {
-      res.status(500).json({
-        error: "There was an error while saving the post to the database",
-      });
+  const { category, story } = req.body;
+  const newPost = { category, story };
+  console.log(req.body);
+  if (!category || !story) {
+    res.status(400).json({
+      errorMessage: "Please provide category and story for the post.",
     });
+  } else {
+    db.insert(newPost)
+      .then((addedPost) => {
+        res.json(addedPost);
+        res.status(201);
+      })
+      .catch((error) => {
+        res.status(500).json({
+          error: "There was an error while saving the post to the database",
+        });
+      });
+  }
 });
 
 router.delete("/:id", (req, res) => {
   db.deletePost(req.params.id)
     .then((removed) => {
-      res.status(200).json(removed);
+      res.status(200).json({
+        message: `Post id: ${req.params.id} has been removed`,
+        removed,
+      });
     })
     .catch((error) => {
       res.status(500).json({ error: "Failed to delete post" });
@@ -60,7 +71,9 @@ router.put("/:id", (req, res) => {
 
   db.updatePost(req.params.id, newContent)
     .then((edit) => {
-      res.status(200).json(edit);
+      res.status(200).json({
+        message: `Edits successful! category:'${category}' story:'${story}' `,
+      });
     })
     .catch((error) => {
       res.status(500).json({ message: "Failed to update post" });

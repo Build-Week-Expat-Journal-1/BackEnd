@@ -8,7 +8,7 @@ const restricted = require("../auth/restricted-middleware.js");
 
 router.use("/auth", authRouter);
 router.use("/users", restricted, usersRouter);
-router.use("/posts", restricted, postsRouter);
+router.use("/posts", postsRouter);
 
 router.get("/", (req, res) => {
   res.json({ api: "Server Online" });

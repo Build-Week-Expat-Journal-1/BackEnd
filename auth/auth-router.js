@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
   try {
     const newUser = await Users.add(user);
     if (newUser) {
-      res.status(201).json("New User added");
+      res.status(201).json(`User ${user.username} has been registered!`);
     } else {
       res.status(404).json("Unable to add new User");
     }

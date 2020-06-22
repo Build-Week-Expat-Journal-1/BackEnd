@@ -22,7 +22,7 @@ function addPost(newPost) {
 }
 
 function updatePost(id, updatedPost) {
-  return db("posts").update();
+  return db("posts").where({ id }).update(updatedPost);
 }
 
 function deletePost(id) {
@@ -32,5 +32,5 @@ function deletePost(id) {
 function insert(post) {
   return db("posts")
     .insert(post, "id")
-    .then((ids) => ({ id: ids[0] }));
+    .then((id) => getById(id[0]));
 }
