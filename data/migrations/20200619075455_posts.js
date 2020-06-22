@@ -8,15 +8,8 @@ exports.up = async function (knex) {
     tbl
       .string("posted_date")
       .defaultTo(moment().format("YYYY-MM-DD HH:mm:ss"))
-      .notNullable()
-      .unique();
-    tbl
-      .integer("user_id")
-      .notNullable()
-      .references("id")
-      .inTable("users")
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
+      .notNullable();
+    tbl.string("photo");
   });
 };
 
