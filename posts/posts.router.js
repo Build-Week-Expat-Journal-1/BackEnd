@@ -1,6 +1,5 @@
 const express = require("express");
 const db = require("./posts.model");
-const { contentSecurityPolicy } = require("helmet");
 const router = express.Router();
 router.use(express.json());
 
