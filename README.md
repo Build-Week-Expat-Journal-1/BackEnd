@@ -6,13 +6,13 @@
 
 #### User Registration
 
-##### POST /auth/register
+##### POST /api/auth/register
 
 <br/>
 
 | Method |      Endpoint      |
 |--------|--------------------|
-|  POST  |   /auth/register   |
+|  POST  | /api/auth/register |
 
 Input:\
 email: "`generic@mail.com`", (string required, unique)\
@@ -34,7 +34,7 @@ password: "hashed password"
 
 | Method |      Endpoint      |
 |--------|--------------------|
-|  POST  |    /auth/login     |
+|  POST  |  /api/auth/login   |
 
 
 Input:\
@@ -46,3 +46,85 @@ ID: "id assigned to user",\
 username: "username of user",\
 token: JSON webtoken returned,\
 message: "Welcome, user!"
+
+### Story Endpoints
+
+#### GET /api/posts
+
+
+| Method |      Endpoint      |
+|--------|--------------------|
+|  Get   |    /api/posts      |
+
+
+Input:\
+None
+
+Output:\
+Posts
+
+#### GET /api/posts/:id
+
+
+| Method |      Endpoint      |
+|--------|--------------------|
+|  Get   |   /api/posts/:id   |
+
+
+Input:\
+id: "id of post"
+
+Output:\
+Post of corresponding ID
+
+#### POST /api/posts/
+
+
+| Method |      Endpoint      |
+|--------|--------------------|
+|  Post  |     /api/posts     |
+
+
+Input:\
+category: "Category of post"\
+story: "Story of post"
+
+Output:\
+ID: id of post (auto-generated)\
+Category: "Category of post"\
+Story: "Story of post"\
+Posted_date: post date (auto-generated)
+
+#### DELETE /api/posts/:id
+
+
+| Method |      Endpoint      |
+|--------|--------------------|
+| Delete |   /api/posts/:id   |
+
+
+Input:\
+id: 1
+
+Output:\
+"Post id: 1 has been removed"
+
+#### PUT /api/posts/
+
+
+| Method |      Endpoint      |
+|--------|--------------------|
+|  Put   |   /api/posts/:id   |
+
+
+Input:\
+ID: 1
+category: "Category of post"\
+story: "Story of post"
+
+Output:\
+Category: "Category of post"\
+Story: "Story of post"
+
+
+
