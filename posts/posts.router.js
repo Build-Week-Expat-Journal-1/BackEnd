@@ -30,8 +30,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { category, story } = req.body;
-  const newPost = { category, story };
+  const { category, story, photo } = req.body;
+  const newPost = { category, story, photo };
   console.log(req.body);
   if (!category || !story) {
     res.status(400).json({
