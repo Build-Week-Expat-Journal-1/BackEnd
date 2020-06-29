@@ -49,3 +49,20 @@ ID: "id assigned to user",\
 username: "username of user",\
 token: JSON webtoken returned,\
 message: "Welcome, user!"
+
+<br/>
+
+### User Posts Routes
+
+<br/>
+
+|      Endpoints       | Method|            Purpose              |
+| :------------------: | :----:| :-----------------------------: |
+|      /posts          | GET   |     Gets a List of posts        |
+|      /posts/:id      | GET   |     Gets a post By Id           |
+|      /posts          | POST  |     POST a new travel post      |
+|      /posts/:id      | PUT   |        Edits a post             |
+|      /posts/:id      |DELETE |        Deletes a post           |
+
+
+<br/>
