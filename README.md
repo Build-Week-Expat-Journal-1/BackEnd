@@ -2,7 +2,6 @@
 
 ## Deployed Site: https://expat-digital-journal.herokuapp.com/
 
---- 
 
 ## Expat Journal API Guide
 
